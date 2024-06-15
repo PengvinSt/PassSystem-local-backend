@@ -21,9 +21,9 @@ const getMongoOptions = () => ({
 export const getMongoConfig = async (
   configService: ConfigService,
 ): Promise<MongooseModuleOptions> => {
-  console.log(getMongoString(configService));
+  getMongoString(configService);
   return {
-    uri: ``,
+    uri: `mongodb+srv://PengvinSt:1234@testweb.p8jeqwk.mongodb.net/?retryWrites=true&w=majority`,
     ...getMongoOptions(),
   };
 };

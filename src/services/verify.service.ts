@@ -3,12 +3,14 @@ import { UserDocument, UserModel } from '../schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import IActionStatus from '../interface/action-status.interface';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class VerifyService {
   constructor(
     @InjectModel(UserModel.name)
     private readonly userModel: Model<UserDocument>,
+    private readonly httpService: HttpService,
   ) {}
 
   public async verify(body: {
@@ -24,6 +26,11 @@ export class VerifyService {
     const verified = true;
     if (verified) {
       console.log('Gates open!!');
+      try {
+        this.httpService.get('');
+      } catch (error) {
+        console.error(error);
+      }
       return { message: 'User verified', success: true };
     }
 

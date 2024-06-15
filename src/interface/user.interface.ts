@@ -1,4 +1,4 @@
-import ITokens from "./token.interface";
+import ITokens from './token.interface';
 
 export default interface IUser {
   name: {

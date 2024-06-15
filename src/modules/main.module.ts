@@ -1,16 +1,16 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { GraphQLModule } from "@nestjs/graphql";
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { MongooseModule } from "@nestjs/mongoose";
-import { getMongoConfig } from "../config/db-connect.config";
-import { AuthModule } from "./auth.module";
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { MongooseModule } from '@nestjs/mongoose';
+import { getMongoConfig } from '../config/db-connect.config';
+import { AuthModule } from './auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: "envs/.backend.env",
+      envFilePath: 'envs/.backend.env',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

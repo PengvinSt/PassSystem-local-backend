@@ -13,7 +13,7 @@ export class VerifyController {
   @ApiBearerAuth()
   //@ApiBody({required: true, description: "User identifier and token to verifying program"})
   @ApiResponse({ status: HttpStatus.OK, description: "Success" })
-  @UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   verifyUser(
     @Body() body: { uuid: string; token: string }
   ): Promise<IActionStatus> {
