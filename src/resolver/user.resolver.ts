@@ -2,8 +2,6 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserModel } from '../schemas/user.schema';
 import { UserService } from '../services/user.service';
 import { UserInputDto, UserOutputDto } from '../dto/user.dto';
-import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
 @Resolver(() => UserModel)
 export class UserResolver {
