@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { UserModel, UserSchema } from '../schemas/user.schema';
-import { UserService } from '../services/user.service';
-import { UserResolver } from '../resolver/user.resolver';
-import { PassportModule } from '@nestjs/passport';
+import { Module } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import { UserModel, UserSchema } from "../schemas/user.schema";
+import { UserService } from "../services/user.service";
+import { UserResolver } from "../resolver/user.resolver";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { PassportModule } from '@nestjs/passport';
       },
     ]),
     PassportModule.register({
-      defaultStrategy: 'jwt',
+      defaultStrategy: "jwt",
     }),
   ],
   providers: [UserService, UserResolver],

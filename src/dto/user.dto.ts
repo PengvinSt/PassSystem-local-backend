@@ -1,6 +1,6 @@
-import { IsEmail, IsNotEmpty, IsNotEmptyObject } from 'class-validator';
-import IUser from '../interface/user.interface';
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { IsEmail, IsNotEmpty, IsNotEmptyObject } from "class-validator";
+import IUser from "../interface/user.interface";
+import { Field, InputType, ObjectType } from "@nestjs/graphql";
 import {
   BanInputType,
   BanObjectType,
@@ -10,7 +10,7 @@ import {
   NameObjectType,
   TokensInputType,
   TokensObjectType,
-} from '../interface/user.graphql.types';
+} from "../interface/user.graphql.types";
 
 export class UserDto implements IUser {
   @IsNotEmptyObject()

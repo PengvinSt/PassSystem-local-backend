@@ -1,17 +1,17 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { Field, ObjectType } from '@nestjs/graphql';
-import IUser from '../interface/user.interface';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+import { Field, ObjectType } from "@nestjs/graphql";
+import IUser from "../interface/user.interface";
 import {
   BanObjectType,
   LoginObjectType,
   NameObjectType,
-} from '../interface/user.graphql.types';
+} from "../interface/user.graphql.types";
 
 export type UserDocument = UserModel & Document;
 
 @ObjectType()
-@Schema({ collection: 'users', timestamps: true })
+@Schema({ collection: "users", timestamps: true })
 export class UserModel implements IUser {
   @Field()
   @Prop({ type: Object, required: true })

@@ -1,17 +1,17 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { UserDocument, UserModel } from '../schemas/user.schema';
-import { Model } from 'mongoose';
-import { UserDto } from '../dto/user.dto';
-import { PrettyDto } from '../utilities/prettier.dto';
-import { LoginInputType } from '../interface/user.graphql.types';
-import { genSalt, hash, compare } from 'bcrypt';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { UserDocument, UserModel } from "../schemas/user.schema";
+import { Model } from "mongoose";
+import { UserDto } from "../dto/user.dto";
+import { PrettyDto } from "../utilities/prettier.dto";
+import { LoginInputType } from "../interface/user.graphql.types";
+import { genSalt, hash, compare } from "bcrypt";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(UserModel.name)
-    private readonly userModel: Model<UserDocument>,
+    private readonly userModel: Model<UserDocument>
   ) {}
 
   async findMany(): Promise<UserDto[]> {
@@ -52,8 +52,8 @@ export class UserService {
 
     if (candidate) {
       throw new HttpException(
-        'User already exists(Email error)',
-        HttpStatus.BAD_REQUEST,
+        "User already exists(Email error)",
+        HttpStatus.BAD_REQUEST
       );
     }
 
@@ -77,17 +77,17 @@ export class UserService {
 
   async loginByLogin({ username, password }: LoginInputType): Promise<UserDto> {
     const candidate = await this.userModel
-      .findOne({ 'login.username': username })
+      .findOne({ "login.username": username })
       .exec();
     if (!candidate) {
-      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
     if (candidate.ban !== undefined && candidate.ban.isBaned === true) {
-      throw new HttpException('User is banned!', HttpStatus.FORBIDDEN);
+      throw new HttpException("User is banned!", HttpStatus.FORBIDDEN);
     }
     const areEqual = await compare(password, candidate.login.password);
     if (!areEqual) {
-      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+      throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
     }
 
     return PrettyDto.prettyUserDto(candidate);

@@ -1,6 +1,6 @@
-import { Types } from 'mongoose';
-import { UserDto } from '../dto/user.dto';
-import { UserDocument } from '../schemas/user.schema';
+import { Types } from "mongoose";
+import { UserDto } from "../dto/user.dto";
+import { UserDocument } from "../schemas/user.schema";
 
 export class PrettyDto {
   static prettyUserDto = (data: UserDocument): UserDto => {
@@ -27,10 +27,10 @@ export class PrettyDto {
       picture,
       login,
       job,
-      ban: ban !== undefined ? ban : { isBaned: false, banDate: 'Not banned' },
+      ban: ban !== undefined ? ban : { isBaned: false, banDate: "Not banned" },
       uuid,
       isOnline,
-      token: { accessToken: '', expiresIn: '' },
+      token: { accessToken: "", expiresIn: "" },
     };
 
     return userDto;
@@ -38,7 +38,7 @@ export class PrettyDto {
   static prettyAllUsersDto = (data: UserDocument[]): UserDto[] => {
     const allUsersDto = [];
 
-    data.forEach((userDto) => {
+    data.forEach(userDto => {
       const prettyUser = this.prettyUserDto(userDto);
       allUsersDto.push(prettyUser);
     });
