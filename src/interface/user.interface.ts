@@ -15,30 +15,7 @@ export default interface IUser {
     password: string;
   };
   role: string;
-  dob: {
-    date: string;
-    age: number;
-  };
-  registered_date: string;
-  phone: string;
   job: string;
-  contract?: {
-    document: string;
-    startDate: string;
-  };
-  payment?: number;
-  work?: {
-    hours: number;
-    sheduel: {
-      date: string;
-      hours: {
-        startHour: string;
-        endHour: string;
-        full: number;
-      };
-      task: string;
-    }[];
-  };
   token?: ITokens;
   ban?: {
     isBaned: boolean;

@@ -13,13 +13,7 @@ export class PrettyDto {
       email,
       picture,
       login,
-      dob,
-      registered_date,
-      phone,
       job,
-      contract,
-      payment,
-      work,
       ban,
       isOnline,
     } = data;
@@ -32,19 +26,7 @@ export class PrettyDto {
       email,
       picture,
       login,
-      dob,
-      registered_date,
-      phone,
       job,
-      contract:
-        contract !== undefined
-          ? contract
-          : {
-              document: 'Not signed/available',
-              startDate: 'Not signed/available',
-            },
-      payment: payment !== undefined ? payment : 0,
-      work: work !== undefined ? work : { hours: 0, sheduel: [] },
       ban: ban !== undefined ? ban : { isBaned: false, banDate: 'Not banned' },
       uuid,
       isOnline,

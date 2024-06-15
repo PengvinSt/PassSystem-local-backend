@@ -9,6 +9,10 @@ async function Start() {
   app.useStaticAssets(join(__dirname, 'assets'));
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
   const port = process.env.PORT || 3001;
   // app.use(express.static(join(__dirname, '../assets')));
   //Swagger setup

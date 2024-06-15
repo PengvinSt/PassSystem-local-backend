@@ -9,20 +9,17 @@ import { AuthModule } from './auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // Allow to use env globaly
-      envFilePath: 'envs/.backend.env', //path to env
+      isGlobal: true,
+      envFilePath: 'envs/.backend.env',
     }),
     MongooseModule.forRootAsync({
-      //Mongoose connection module
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: getMongoConfig, // config function
+      useFactory: getMongoConfig,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      // Provides graphql driver
       driver: ApolloDriver,
       autoSchemaFile: true,
-      //playground: false,
     }),
     AuthModule,
   ],

@@ -1,26 +1,15 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNotEmptyObject,
-  IsPhoneNumber,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNotEmptyObject } from 'class-validator';
 import IUser from '../interface/user.interface';
-import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import {
   BanInputType,
   BanObjectType,
-  ContractInputType,
-  ContractObjectType,
-  DobInputType,
-  DobObjectType,
   LoginInputType,
   LoginObjectType,
   NameInputType,
   NameObjectType,
   TokensInputType,
   TokensObjectType,
-  WorkInputType,
-  WorkObjectType,
 } from '../interface/user.graphql.types';
 
 export class UserDto implements IUser {
@@ -50,24 +39,7 @@ export class UserDto implements IUser {
   login: LoginObjectType;
 
   @IsNotEmpty()
-  dob: DobObjectType;
-
-  @IsNotEmpty()
-  @Field()
-  registered_date: string;
-
-  @IsNotEmpty()
-  @IsPhoneNumber()
-  phone: string;
-
-  @IsNotEmpty()
   job: string;
-
-  contract?: ContractObjectType;
-
-  payment?: number;
-
-  work?: WorkObjectType;
 
   ban?: BanObjectType;
 
@@ -111,29 +83,7 @@ export class UserInputDto implements IUser {
 
   @IsNotEmpty()
   @Field()
-  dob: DobInputType;
-
-  @IsNotEmpty()
-  @Field()
-  registered_date: string;
-
-  @IsNotEmpty()
-  @IsPhoneNumber()
-  @Field()
-  phone: string;
-
-  @IsNotEmpty()
-  @Field()
   job: string;
-
-  @Field({ nullable: true })
-  contract?: ContractInputType;
-
-  @Field(() => Int, { nullable: true })
-  payment?: number;
-
-  @Field({ nullable: true })
-  work?: WorkInputType;
 
   @Field({ nullable: true })
   ban?: BanInputType;
@@ -150,7 +100,7 @@ export class UserOutputDto implements IUser {
 
   @Field()
   @IsNotEmpty()
-  role: string;
+  uuid: string;
 
   @Field()
   @IsNotEmpty()
@@ -158,7 +108,7 @@ export class UserOutputDto implements IUser {
 
   @Field()
   @IsNotEmpty()
-  uuid: string;
+  role: string;
 
   @IsNotEmpty()
   @Field()
@@ -179,29 +129,7 @@ export class UserOutputDto implements IUser {
 
   @IsNotEmpty()
   @Field()
-  dob: DobObjectType;
-
-  @IsNotEmpty()
-  @Field()
-  registered_date: string;
-
-  @IsNotEmpty()
-  @IsPhoneNumber()
-  @Field()
-  phone: string;
-
-  @IsNotEmpty()
-  @Field()
   job: string;
-
-  @Field({ nullable: true })
-  contract?: ContractObjectType;
-
-  @Field(() => Int, { nullable: true })
-  payment?: number;
-
-  @Field({ nullable: true })
-  work?: WorkObjectType;
 
   @Field({ nullable: true })
   ban?: BanObjectType;

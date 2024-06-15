@@ -16,7 +16,7 @@ export class UserService {
 
   async findMany(): Promise<UserDto[]> {
     const user = await this.userModel.find();
-
+    console.log(user);
     return PrettyDto.prettyAllUsersDto(user);
   }
 
@@ -97,6 +97,14 @@ export class UserService {
     const candidate = await this.userModel.findOne({ uuid: uuid }).exec();
     if (!candidate)
       throw new HttpException(`User is not exist!`, HttpStatus.BAD_REQUEST);
+    if (candidate.ban.isBaned) {
+      const newBan = {
+        isBaned: false,
+        banDate: null,
+      };
+      await candidate.updateOne({ ban: newBan }).exec();
+      return true;
+    }
     const newBan = {
       isBaned: true,
       banDate: new Date().toISOString(),

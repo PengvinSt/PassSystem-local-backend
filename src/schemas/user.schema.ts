@@ -1,14 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import IUser from '../interface/user.interface';
 import {
   BanObjectType,
-  ContractObjectType,
-  DobObjectType,
   LoginObjectType,
   NameObjectType,
-  WorkObjectType,
 } from '../interface/user.graphql.types';
 
 export type UserDocument = UserModel & Document;
@@ -48,32 +45,8 @@ export class UserModel implements IUser {
   login: LoginObjectType;
 
   @Field()
-  @Prop({ type: Object, required: true })
-  dob: DobObjectType;
-
-  @Field()
-  @Prop({ required: true })
-  registered_date: string;
-
-  @Field()
-  @Prop({ required: true })
-  phone: string;
-
-  @Field()
   @Prop({ required: true })
   job: string;
-
-  @Field({ nullable: true })
-  @Prop({ type: Object, required: false })
-  contract?: ContractObjectType;
-
-  @Field(() => Int, { nullable: true })
-  @Prop({ type: Number, required: false })
-  payment?: number;
-
-  @Field({ nullable: true })
-  @Prop({ type: Object, required: false })
-  work?: WorkObjectType;
 
   @Field({ nullable: true })
   @Prop({ type: Object, required: false })
